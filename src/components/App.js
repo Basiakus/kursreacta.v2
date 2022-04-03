@@ -1,5 +1,7 @@
 //import packages
 import React from 'react';
+//import styles 
+import '../styles.css';
 
 
 //import components
