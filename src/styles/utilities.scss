@@ -1,0 +1,18 @@
+.NoDisplay {
+    display: none;
+}
+
+input {
+    min-width: 60%;
+    margin-left: 20px;
+    font-size: 16px;
+}
+
+button {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.inactive {
+    filter: blur(2px) grayscale(1);
+}
