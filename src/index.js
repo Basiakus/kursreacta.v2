@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -214,7 +213,7 @@ class Timebox extends React.Component {
         this.state= {
             isEditable: false
         }
-        const {timeboxId, onDelete, onEdit, title, totalTimeInMinutes} = this.props;
+        const {timeboxId} = this.props;
         this.titleRef = React.createRef();
         this.totalTimeRef = React.createRef();
         this.handleUpdateSubmit = event => {
@@ -232,7 +231,7 @@ class Timebox extends React.Component {
         }
     }
     render() {
-        const {timeboxId, onDelete, onEdit, title, totalTimeInMinutes} = this.props;
+        const {onDelete, title, totalTimeInMinutes} = this.props;
         const {isEditable} = this.state;
         return (
             <>
