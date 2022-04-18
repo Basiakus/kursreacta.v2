@@ -1,5 +1,6 @@
 //import packages
 import React from 'react';
+import classNames from 'classnames';
 
 class Timebox extends React.Component {
     constructor(props) {
@@ -25,18 +26,33 @@ class Timebox extends React.Component {
         }
     }
     render() {
-        const {onDelete, title, totalTimeInMinutes} = this.props;
         const {isEditable} = this.state;
+        const {onDelete, title, totalTimeInMinutes} = this.props;
+
+        //classNames
+        let timeboxClassName = classNames(
+            'Timebox',
+            {
+                'NoDisplay': isEditable
+            }
+        );
+        let timeboxOnEditClassName = classNames(
+            'Timebox',
+            {
+                'NoDisplay': !isEditable
+            }
+        )
+
         return (
             <>
-                <div className={`Timebox ${isEditable ? 'NoDisplay' : ''}`}>
+                <div className={timeboxClassName}>
                     <h3>{title} - {totalTimeInMinutes}min.</h3>
                     <button onClick={ ()=> {this.handleEdit(isEditable)}}>edytuj</button>
                     <button onClick={onDelete}>usuń</button>
                 </div>
                 <form 
                     onSubmit={this.handleUpdateSubmit} 
-                    className={`Timebox ${!isEditable ? 'NoDisplay' : ''}`}
+                    className={timeboxOnEditClassName}
                 >
                     <label>
                         Co robisz ? 
