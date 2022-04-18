@@ -1,6 +1,6 @@
 //import packages
 import React from 'react';
-import classNames from 'classnames';
+
 
 //import components
 import Clock from './Clock'; 
@@ -30,8 +30,9 @@ const CurrentTimebox = ({
         <h1>{title}</h1>
         <Clock minutes={minutesLeft} seconds={secondsLeft <= 9 ? `0${secondsLeft}` : secondsLeft} className={!isRunning ? 'inactive' : ''}/>
         <ProgressBar 
-            className={!isRunning ? 'inactive' : ''} 
-            percent={progressInPercent}/>
+            isStoped={!isRunning}
+            percent={progressInPercent}
+        />
         <button onClick={handleStart} disabled={isRunning}>start</button>
         <button onClick={handleStop} disabled={!isRunning}>stop</button>
         <button onClick={togglePause} disabled={!isRunning}>{!isPaused ? 'pauzuj': 'wznów'}</button>
