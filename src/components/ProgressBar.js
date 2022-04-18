@@ -1,8 +1,16 @@
 import React from 'react';
+import classNames from 'classnames';
 
-const ProgressBar = ({className="", percent}) => {
+const ProgressBar = ({className="", percent, isStoped}) => {
+    let progressClassNames = classNames(
+        'ProgressBar',
+        className,
+        {
+            'inactive': isStoped
+        }
+    )
     return (
-        <div className={`ProgressBar ${className}`}
+        <div className={progressClassNames}
             style={{
                 background: `linear-gradient(
                     to left,
