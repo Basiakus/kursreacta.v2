@@ -15,6 +15,19 @@ class EditableTimebox extends React.Component {
         elapsedTimeInSeconds: 0,
         isEditable: true
     }
+    componentDidMount() {
+        console.count('componentDidMount');
+    }
+
+    componentDidUpdate() {
+        console.count('componentDidUpdate');
+    }
+
+    componentWillUnmount() {
+        console.count('componentWillUnmount');
+        this.stopTimer();
+    }
+
     onConfirm = () => {
         this.setState({isEditable: false})
     }
@@ -30,6 +43,7 @@ class EditableTimebox extends React.Component {
         this.setState({totalTimeInMinutes: event.target.value})
     }
     startTimer = () => {
+        console.log('timer is running');
         this.intervalId = setInterval(()=> {
             this.setState(
                 prevState => ({elapsedTimeInSeconds: prevState.elapsedTimeInSeconds + .01})
@@ -79,30 +93,32 @@ class EditableTimebox extends React.Component {
             isEditable
         } = this.state;
         return (
-            <>
-                <TimeboxEditor 
-                    isRunning={isRunning}
-                    onTitleChange={this.handleTitleChange}
-                    onTotalTimeInMinutesChange={this.handleTotalTimeInMinutesChange}
-                    handleStart={this.handleStart}
-                    title={title} 
-                    totalTimeInMinutes={totalTimeInMinutes}
-                    isEditable={isEditable}
-                    onConfirm={this.onConfirm}
-                />
-                <CurrentTimebox 
-                    title={title} 
-                    totalTimeInMinutes={totalTimeInMinutes}
-                    isRunning={isRunning}
-                    isPaused={isPaused}
-                    pausesCount={pausesCount}
-                    elapsedTimeInSeconds={elapsedTimeInSeconds}
-                    handleStart={this.handleStart}
-                    handleStop={this.handleStop}
-                    togglePause={this.togglePause}
-                    isEditable={isEditable}
-                    handleEdit={this.handleEdit}
-                />
+            <>  
+                { isEditable ?
+                    (<TimeboxEditor 
+                        isRunning={isRunning}
+                        onTitleChange={this.handleTitleChange}
+                        onTotalTimeInMinutesChange={this.handleTotalTimeInMinutesChange}
+                        handleStart={this.handleStart}
+                        title={title} 
+                        totalTimeInMinutes={totalTimeInMinutes}
+                        isEditable={isEditable}
+                        onConfirm={this.onConfirm}
+                    />) : (
+                    <CurrentTimebox 
+                        title={title} 
+                        totalTimeInMinutes={totalTimeInMinutes}
+                        isRunning={isRunning}
+                        isPaused={isPaused}
+                        pausesCount={pausesCount}
+                        elapsedTimeInSeconds={elapsedTimeInSeconds}
+                        handleStart={this.handleStart}
+                        handleStop={this.handleStop}
+                        togglePause={this.togglePause}
+                        isEditable={isEditable}
+                        handleEdit={this.handleEdit}
+                    />
+                )}
             </>
         )
     }
