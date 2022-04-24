@@ -94,31 +94,36 @@ class EditableTimebox extends React.Component {
         } = this.state;
         return (
             <>  
-                { isEditable ?
-                    (<TimeboxEditor 
-                        isRunning={isRunning}
-                        onTitleChange={this.handleTitleChange}
-                        onTotalTimeInMinutesChange={this.handleTotalTimeInMinutesChange}
-                        handleStart={this.handleStart}
-                        title={title} 
-                        totalTimeInMinutes={totalTimeInMinutes}
-                        isEditable={isEditable}
-                        onConfirm={this.onConfirm}
-                    />) : (
-                    <CurrentTimebox 
-                        title={title} 
-                        totalTimeInMinutes={totalTimeInMinutes}
-                        isRunning={isRunning}
-                        isPaused={isPaused}
-                        pausesCount={pausesCount}
-                        elapsedTimeInSeconds={elapsedTimeInSeconds}
-                        handleStart={this.handleStart}
-                        handleStop={this.handleStop}
-                        togglePause={this.togglePause}
-                        isEditable={isEditable}
-                        handleEdit={this.handleEdit}
-                    />
-                )}
+                <React.StrictMode>
+                    { isEditable ?
+                        (
+                            <TimeboxEditor 
+                                isRunning={isRunning}
+                                onTitleChange={this.handleTitleChange}
+                                onTotalTimeInMinutesChange={this.handleTotalTimeInMinutesChange}
+                                handleStart={this.handleStart}
+                                title={title} 
+                                totalTimeInMinutes={totalTimeInMinutes}
+                                isEditable={isEditable}
+                                onConfirm={this.onConfirm}
+                            />
+                        ) : (
+                            <CurrentTimebox 
+                                title={title} 
+                                totalTimeInMinutes={totalTimeInMinutes}
+                                isRunning={isRunning}
+                                isPaused={isPaused}
+                                pausesCount={pausesCount}
+                                elapsedTimeInSeconds={elapsedTimeInSeconds}
+                                handleStart={this.handleStart}
+                                handleStop={this.handleStop}
+                                togglePause={this.togglePause}
+                                isEditable={isEditable}
+                                handleEdit={this.handleEdit}
+                            />
+                        )
+                    }
+                </React.StrictMode>    
             </>
         )
     }
