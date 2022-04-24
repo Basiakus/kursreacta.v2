@@ -23,12 +23,16 @@ const CurrentTimebox = ({
     const totalTimeInSeconds = totalTimeInMinutes*60;
     const timeLeftInSeconds = totalTimeInSeconds - elapsedTimeInSeconds;
     const minutesLeft = Math.floor(timeLeftInSeconds/60);
-    const secondsLeft = Math.floor(timeLeftInSeconds%60);
+    const secondsLeft = Math.floor(timeLeftInSeconds%60) < 0 ? 0 : Math.floor(timeLeftInSeconds%60);
     const progressInPercent = (elapsedTimeInSeconds / totalTimeInSeconds)*100;
     return (
         <div className={`CurrentTimebox ${isEditable ? 'inactive' : ''}`}>
         <h1>{title}</h1>
-        <Clock minutes={minutesLeft} seconds={secondsLeft <= 9 ? `0${secondsLeft}` : secondsLeft} className={!isRunning ? 'inactive' : ''}/>
+        <Clock 
+            
+            minutes={minutesLeft} 
+            seconds={secondsLeft <= 9 ? `0${secondsLeft}` : secondsLeft} 
+        />
         <ProgressBar 
             isStoped={!isRunning}
             percent={progressInPercent}

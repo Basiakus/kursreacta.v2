@@ -8,7 +8,7 @@ import TimeboxEditor from './TimeboxEditor';
 class EditableTimebox extends React.Component {
     state = {
         title: 'wpisz zadanie...',
-        totalTimeInMinutes: 25,
+        totalTimeInMinutes: .05,
         isRunning: false,
         isPaused: true,
         pausesCount: 0,
@@ -16,15 +16,17 @@ class EditableTimebox extends React.Component {
         isEditable: true
     }
     componentDidMount() {
-        console.count('componentDidMount');
+        //console.count('componentDidMount');
     }
 
     componentDidUpdate() {
-        console.count('componentDidUpdate');
+        if(this.state.elapsedTimeInSeconds >= this.state.totalTimeInMinutes*60 && this.state.isRunning) {
+            this.handleStop();
+        }
     }
 
     componentWillUnmount() {
-        console.count('componentWillUnmount');
+        //console.count('componentWillUnmount');
         this.stopTimer();
     }
 
@@ -50,6 +52,7 @@ class EditableTimebox extends React.Component {
             )
         }, 10);
     }
+    
     stopTimer = () => {
         clearInterval(this.intervalId);
     }
