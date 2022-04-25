@@ -42,7 +42,9 @@ class Timebox extends React.Component {
                 'NoDisplay': !isEditable
             }
         )
-
+        if(totalTimeInMinutes <= 0) {
+            throw new Error('czas musi być większy od 0');
+        }
         return (
             <>
                 <div className={timeboxClassName}>

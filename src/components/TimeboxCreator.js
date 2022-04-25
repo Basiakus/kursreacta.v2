@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 class TimeboxCreator extends React.Component {
 
     state = {
-        title: '',
-        totalTimeInMinutes: ''
+        title: 'target',
+        totalTimeInMinutes: 3
     }
     handleTitleChange = event => {
         this.setState({
@@ -28,8 +28,8 @@ class TimeboxCreator extends React.Component {
             }
         )
         this.setState({
-            title: '',
-            totalTimeInMinutes:''
+            title: 'target',
+            totalTimeInMinutes: 3
         })
     }
     render() {
@@ -52,7 +52,7 @@ class TimeboxCreator extends React.Component {
                     <input 
                         type="number" 
                         onChange={this.handleTotalTimeInMinutesChange}
-                        value={this.totalTimeInMinutes}
+                        value={this.state.totalTimeInMinutes}
                     />
                 </label>
                 <br/>
