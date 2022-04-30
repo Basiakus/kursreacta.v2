@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 //import components
 import Timebox from './Timebox';
 import TimeboxCreator from './TimeboxCreator';
-import Error from './Error';
+import ErrorBoundary from './ErrorBoundary';
 
 class TimeboxList extends React.Component {
     state = {
@@ -47,7 +47,7 @@ class TimeboxList extends React.Component {
                 <TimeboxCreator 
                     onCreate={this.handleCreate}
                 />
-                <Error message="błąd w Timeboxlist">
+                <ErrorBoundary message="błąd w Timeboxlist">
                     {this.state.timeboxes.map( timebox =>(
                         <Timebox 
                             key={timebox.id} 
@@ -58,7 +58,7 @@ class TimeboxList extends React.Component {
                             onEdit={this.updatedTimebox}
                         />
                     ))}
-                </Error>
+                </ErrorBoundary>
             </>
         )
     }
