@@ -55,6 +55,7 @@ class EditableTimebox extends React.Component {
     
     stopTimer = () => {
         clearInterval(this.intervalId);
+        console.log('timebox is stopping')
     }
     handleStart = event => {
         this.setState({

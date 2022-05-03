@@ -1,6 +1,8 @@
 //import packages
 import React from 'react';
 import classNames from 'classnames';
+import propTypes from 'prop-types';
+
 
 class Timebox extends React.Component {
     constructor(props) {
@@ -85,6 +87,17 @@ class Timebox extends React.Component {
             </>
         )
     }
+}
+
+Timebox.defaultProps = {
+    className: ''
+}
+
+Timebox.propTypes = {
+    className: propTypes.string.isRequired,
+    onEdit: propTypes.func.isRequired,
+    title: propTypes.string.isRequired,
+    totalTimeInMinutes: propTypes.number.isRequired
 }
 
 export default Timebox;
